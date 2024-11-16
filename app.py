@@ -1,6 +1,4 @@
 import os
-import grad as gr
-
 os.environ["GOOGLE_API_KEY"] = "AIzaSyDxmFgBBEAaQ8s6N93qvAk9jl23F59L0Tg"
 
 from typing import Annotated, Dict, Any
