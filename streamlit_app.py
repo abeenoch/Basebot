@@ -26,7 +26,8 @@ if user_input:
 
     # Display the chatbot response in the interface
     chatbot_response = st.session_state.state["messages"][-1]["content"]
-    st.markdown(f"**DevBot:** {chatbot_response}")
+    if chatbot_response:
+        st.markdown(f"**DevBot:** {chatbot_response}")
 
     # Clear the input box after processing
     st.session_state.user_input = ""
