@@ -24,12 +24,9 @@ if user_input:
     # Invoke the chat graph with the current state and get the updated state
     st.session_state.state = chat_graph.invoke(st.session_state.state)
 
-    # After invoking, ensure the chatbot response is part of the session state and displayed
-    # Assuming chat_graph.invoke modifies the state and includes the response
-    chatbot_response = st.session_state.state["messages"][-1]["content"]  # The last message is the response
-    if chatbot_response:
-        # Display the chatbot response in the interface
-        st.markdown(f"**DevBot:** {chatbot_response}")
+    # Display the chatbot response in the interface
+    chatbot_response = st.session_state.state["messages"][-1]["content"]
+    st.markdown(f"**DevBot:** {chatbot_response}")
 
     # Clear the input box after processing
     st.session_state.user_input = ""
