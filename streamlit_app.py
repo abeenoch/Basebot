@@ -17,6 +17,7 @@ if st.session_state.state["messages"]:
 
 # Input box for user input
 user_input = st.text_input("Your message:", key="user_input")
+
 if user_input:
     # Add user's message to the state
     st.session_state.state["messages"].append({"type": "user", "content": user_input})
@@ -24,10 +25,13 @@ if user_input:
     # Invoke the chat graph with the current state and get the updated state
     st.session_state.state = chat_graph.invoke(st.session_state.state)
 
-    # Display the chatbot response in the interface
-    chatbot_response = st.session_state.state["messages"][-1]["content"]
-    if chatbot_response:
-        st.markdown(f"**DevBot:** {chatbot_response}")
+    # Ensure the chatbot response is part of the session state and displayed
+    if st.session_state.state["messages"]:
+        chatbot_response = st.session_state.state["messages"][-1]["content"]  # Get last message as response
+
+        if chatbot_response:
+            # Display the chatbot response in the interface
+            st.markdown(f"**DevBot:** {chatbot_response}")
 
     # Clear the input box after processing
     st.session_state.user_input = ""
